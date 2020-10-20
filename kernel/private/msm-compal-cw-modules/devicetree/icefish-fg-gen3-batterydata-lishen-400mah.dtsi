@@ -1,0 +1,83 @@
+/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+qcom,4656630_compal_dbw3_400mah_averaged_july28th2020 {
+	qcom, = <24>;
+	/* #4656630_Compal_DBW3_400mAh_averaged_July28th2020*/
+	qcom,max-voltage-uv = <4300000>;
+	qcom,fg-cc-cv-threshold-mv = <4290>;
+	qcom,fastchg-current-ma = <375>;
+	qcom,nom-batt-capacity-mah = <400>;
+	qcom,batt-id-kohm = <60>;
+	qcom,battery-beta = <4250>;
+	qcom,battery-type = "icefish_400mah_july28th2020";
+	qcom,checksum = <0x70AB>;
+	qcom,gui-version = "PM660GUI - 0.0.0.45";
+	qcom,fg-profile-data = [
+		 22 1F 54 06
+		 76 03 01 F4
+		 E6 1C A9 FB
+		 25 04 0D 0A
+		 82 19 27 22
+		 B7 3C 7B 4B
+		 7A 00 00 00
+		 14 00 00 00
+		 00 00 29 C5
+		 F8 CC BD BB
+		 31 00 08 00
+		 7F E2 52 ED
+		 0D F5 75 EB
+		 40 0D BF 06
+		 9B F5 D9 42
+		 10 06 09 20
+		 27 00 14 00
+		 47 1F 99 FC
+		 88 03 DB FD
+		 DB 1C 9B 02
+		 AA 0C 7F 0B
+		 AB 18 04 2A
+		 9C 4D E9 5B
+		 6C 00 00 00
+		 0D 00 00 00
+		 00 00 39 CD
+		 B1 C2 16 C4
+		 2F 00 00 00
+		 84 00 52 ED
+		 0F EC 01 E3
+		 6A 07 E3 FB
+		 E0 03 22 1B
+		 BF 33 CC FF
+		 07 10 00 00
+		 95 01 CC 44
+		 2F 00 40 00
+		 A1 04 0A FA
+		 FF 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 00 00 00 00
+	];
+};

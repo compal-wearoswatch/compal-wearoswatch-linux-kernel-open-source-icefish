@@ -1,0 +1,96 @@
+/*
+ * Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+#include "incell-touch.dtsi"
+
+&pm660_fg {
+	qcom,fg-jeita-thresholds = <2 10 44 58>;
+	qcom,fg-jeita-hyst-temp = <2>;
+	qcom,battery-data = <&qrd_batterydata>;
+	qcom,fg-chg-term-current = <25>;
+	qcom,battery-thermal-coefficients = [d2 50 ff];
+	qcom,fg-rsense-sel = <1>;
+	qcom,fg-force-load-profile;
+	qcom,fg-auto-recharge-soc;
+	qcom,fg-recharge-soc-thr = <99>;
+	qcom,fg-cutoff-current = <40>;
+	qcom,fg-cutoff-voltage = <3200>;
+	qcom,fg-recharge-voltage = <4265>;
+	qcom,external-fg-gen3;
+	qcom,fg-jeita-en = <1>;
+	qcom,fg-jeita-soft-hot-fv-cc = <4200 375>;
+	qcom,fg-jeita-soft-cold-fv-cc = <4300 100>;
+	qcom,twm-soc-reserve = <3>;
+	qcom,full-soc-scale = <100>;
+};
+
+/ {
+	/delete-node/ qcom,battery-data;
+	qrd_batterydata: qcom,battery-data {
+		qcom,batt-id-range-pct = <60>;
+		#include "icefish-fg-gen3-batterydata-lishen-400mah.dtsi"
+	};
+};
+
+&pm660_pon {
+	qcom,pon_2 {
+		linux,code = <266>;
+	};
+};
+
+&pm660_0 {
+	pm660_charger: qcom,qpnp-smb2 {
+		qcom,external-chg-smb2;
+		qcom,usb-chgpth@1300 {
+			interrupts =
+				<0x0 0x13 0x0 IRQ_TYPE_EDGE_BOTH>,
+				<0x0 0x13 0x1 IRQ_TYPE_EDGE_BOTH>,
+				<0x0 0x13 0x2 IRQ_TYPE_EDGE_BOTH>,
+				<0x0 0x13 0x3 IRQ_TYPE_EDGE_BOTH>,
+				<0x0 0x13 0x4 IRQ_TYPE_EDGE_BOTH>,
+				<0x0 0x13 0x5 IRQ_TYPE_EDGE_RISING>,
+				<0x0 0x13 0x6 IRQ_TYPE_EDGE_RISING>;
+
+			interrupt-names = "usbin-collapse",
+				"usbin-lt-3p6v",
+				"usbin-uv",
+				"usbin-ov",
+				"usbin-plugin",
+				"usbin-src-change",
+				"usbin-icl-change";
+		};
+	};
+};
+
+&pm660_1 {
+    pm660_haptics: qcom,haptics@c000 {
+        qcom,vmax-mv = <3000>;
+    };
+};
+
+&mdss_dsi {
+	qcom,mdss_dsi_ctrl0@1ac8000 {
+		/delete-property/ bklt-supply;
+		vdd-supply = <&pm660_l18>; /*3.3*/
+		vddio-supply = <&pm660_l11>; /*1.8*/
+	};
+};
+
+&pm660_l18 {
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+	qcom,init-voltage = <3300000>;
+};
+
+&soc {
+	/delete-node/ bob_vreg;
+};

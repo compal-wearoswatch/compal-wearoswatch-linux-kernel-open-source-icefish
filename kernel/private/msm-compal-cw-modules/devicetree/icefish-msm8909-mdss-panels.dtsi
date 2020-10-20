@@ -1,0 +1,33 @@
+/* Copyright (c) 2014-2018, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "icefish-dsi-panel-auo-u120blx-amoled-cmd.dtsi"
+
+&mdss_mdp {
+	/delete-node/ qcom,mdss_dsi_auo_390p_cmd;
+};
+
+&soc {
+	dsi_pm660_panel_pwr_supply {
+		qcom,panel-supply-entry@0 {
+			qcom,supply-min-voltage = <3300000>;
+			qcom,supply-max-voltage = <3300000>;
+		};
+	};
+};
+
+&dsi_auo_u120blx_amoled_cmd {
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,panel-supply-entries = <&dsi_pm660_panel_pwr_supply>;
+	qcom,mdss-dsi-power-off-disable;
+	qcom,mdss-dsi-tear-disable;
+};
