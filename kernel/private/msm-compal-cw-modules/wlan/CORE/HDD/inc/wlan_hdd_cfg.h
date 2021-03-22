@@ -3247,6 +3247,28 @@ This feature requires the dependent cfg.ini "gRoamPrefer5GHz" set to 1 */
 #define CFG_FORCE_RSNE_OVERRIDE_MIN     (0)
 #define CFG_FORCE_RSNE_OVERRIDE_MAX     (1)
 #define CFG_FORCE_RSNE_OVERRIDE_DEFAULT (0)
+/*
+ * <ini>
+ * sae_enabled - Enable/Disable SAE support in driver
+ * @Min: 0
+ * @Max: 1
+ * @Default: 1
+ *
+ * This ini is used to enable/disable SAE support in driver
+ * Driver will update config to supplicant based on this config.
+ *
+ * Related: None
+ *
+ * Supported Feature: SAE
+ * Usage: External
+ *
+ * </ini>
+ */
+
+#define CFG_IS_SAE_ENABLED_NAME    "sae_enabled"
+#define CFG_IS_SAE_ENABLED_DEFAULT (1)
+#define CFG_IS_SAE_ENABLED_MIN     (0)
+#define CFG_IS_SAE_ENABLED_MAX     (1)
 
 /*--------------------------------------------------------------------------- 
   Type declarations
@@ -3865,6 +3887,9 @@ typedef struct
    bool                        force_rsne_override;
 #ifdef FEATURE_WLAN_LFR
    uint8_t                     bssid_blacklist_timeout;
+#endif
+#ifdef WLAN_FEATURE_SAE
+   bool                        is_sae_enabled;
 #endif
 } hdd_config_t;
 

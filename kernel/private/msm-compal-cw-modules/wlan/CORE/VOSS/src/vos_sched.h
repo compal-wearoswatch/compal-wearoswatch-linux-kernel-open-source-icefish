@@ -551,4 +551,12 @@ bool vos_is_wd_thread(int threadId);
 void vos_dump_stack(uint8_t value);
 void vos_dump_thread_stacks(int threadId);
 
+
+/**
+ * vos_get_gfp_flags(): get GFP flags
+ *
+ * Based on the scheduled context, return GFP flags
+ * Return: gfp flags
+ */
+int vos_get_gfp_flags(void);
 #endif // #if !defined __VOSS_SCHED_H

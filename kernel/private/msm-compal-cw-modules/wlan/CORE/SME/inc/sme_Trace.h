@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2017 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2013-2017, 2019 The Linux Foundation. All rights reserved.
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -154,6 +154,7 @@ enum {
     TRACE_CODE_SME_COMMAND = 250,
     TRACE_CODE_SME_TX_WDA_MSG,
     TRACE_CODE_SME_RX_WDA_MSG,
+    TRACE_CODE_SME_RX_HDD_SEND_MGMT_TX,
 };
 
 void smeTraceInit(tpAniSirGlobal pMac);

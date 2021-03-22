@@ -3728,9 +3728,9 @@ eHalStatus smeIssueFastRoamNeighborAPEvent (tHalHandle hHal,
 
 eHalStatus sme_RoamDelPMKIDfromCache( tHalHandle hHal, tANI_U8 sessionId,
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
-                                      const tANI_U8 *pBSSId,
+                                      tPmkidCacheInfo *pmksa,
 #else
-                                      tANI_U8 *pBSSId,
+                                      tPmkidCacheInfo *pmksa,
 #endif
                                       tANI_BOOLEAN flush_cache );
 
@@ -4130,4 +4130,35 @@ struct roam_ext_params {
  */
 eHalStatus sme_UpdateBlacklist(tHalHandle hHal, uint8_t session_id,
                                struct roam_ext_params *roam_params);
+/**
+ * sme_send_mgmt_tx() - Sends mgmt frame from CSR to LIM
+ * @hal: The handle returned by mac_open
+ * @session_id: session id
+ * @buf: pointer to frame
+ * @len: frame length
+ *
+ * Return: eHalStatus
+ */
+eHalStatus sme_send_mgmt_tx(tHalHandle hal, uint8_t session_id,
+                                const uint8_t *buf, uint32_t len);
+
+#ifdef WLAN_FEATURE_SAE
+/**
+ * sme_handle_sae_msg() - Sends SAE message received from supplicant
+ * @hal: The handle returned by mac_open
+ * @session_id: session id
+ * @sae_status: status of SAE authentication
+ *
+ * Return: HAL_STATUS
+ */
+eHalStatus sme_handle_sae_msg(tHalHandle hal, uint8_t session_id,
+                              uint8_t sae_status);
+#else
+static inline eHalStatus sme_handle_sae_msg(tHalHandle hal, uint8_t session_id,
+                                            uint8_t sae_status)
+{
+	return eHAL_STATUS_SUCCESS;
+}
+#endif
+
 #endif //#if !defined( __SME_API_H )
